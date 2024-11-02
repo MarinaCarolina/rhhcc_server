@@ -14,7 +14,7 @@ export class PersonalScoreService {
     return this.personalScoreRepository.find();
   }
 
-  findOne(id: number): Promise<PersonalScore> {
+  findOne(id: string): Promise<PersonalScore> {
     return this.personalScoreRepository.findOneBy({ id });
   }
 
@@ -22,7 +22,7 @@ export class PersonalScoreService {
     return this.personalScoreRepository.save(personalScore);
   }
 
-  async remove(id: number): Promise<void> {
+  async remove(id: string): Promise<void> {
     await this.personalScoreRepository.delete(id);
   }
 }

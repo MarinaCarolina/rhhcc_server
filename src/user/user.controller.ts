@@ -13,7 +13,7 @@ export class UserController {
 
   @Get(':id')
   findOne(@Param('id') id: string): Promise<User> {
-    return this.userService.findOne(Number(id));
+    return this.userService.findOne(id);
   }
 
   @Post()
@@ -23,6 +23,6 @@ export class UserController {
 
   @Delete(':id')
   remove(@Param('id') id: string): Promise<void> {
-    return this.userService.remove(Number(id));
+    return this.userService.remove(id);
   }
 }

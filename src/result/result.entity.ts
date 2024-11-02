@@ -2,13 +2,12 @@ import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 import { Pilot } from '../pilot/pilot.entity';
 import { Stage } from '../stage/stage.entity';
 import { RacingClub } from '../racing-club/racing-club.entity';
-import { Car } from '../car/car.entity';
 import { RaceClass } from '../race-class/race-class.entity';
 
 @Entity()
 export class Result {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @ManyToOne(() => Pilot, (pilot) => pilot.results)
   pilot: Pilot;
@@ -21,6 +20,9 @@ export class Result {
 
   @ManyToOne(() => RacingClub, (club) => club.results)
   club: RacingClub;
+
+  @ManyToOne(() => RaceClass, (raceClass) => raceClass.results)
+  raceClass: RaceClass;
 
   @Column()
   weather_conditions: string;

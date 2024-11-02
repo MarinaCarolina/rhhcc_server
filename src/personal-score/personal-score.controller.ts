@@ -1,9 +1,10 @@
 import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { PersonalScore } from './personal-score.entity';
+import { PersonalScoreService } from './personal-score.service';
 
 @Controller('personal-score')
 export class PersonalScoreController {
-  constructor(private readonly personalScoreService: PersonalScore) {}
+  constructor(private readonly personalScoreService: PersonalScoreService) {}
 
   @Get()
   findAll(): Promise<PersonalScore[]> {
@@ -12,7 +13,7 @@ export class PersonalScoreController {
 
   @Get(':id')
   findOne(@Param('id') id: string): Promise<PersonalScore> {
-    return this.personalScoreService.findOne(Number(id));
+    return this.personalScoreService.findOne(id);
   }
 
   @Post()
@@ -22,6 +23,6 @@ export class PersonalScoreController {
 
   @Delete(':id')
   remove(@Param('id') id: string): Promise<void> {
-    return this.personalScoreService.remove(Number(id));
+    return this.personalScoreService.remove(id);
   }
 }

@@ -3,10 +3,10 @@ import { RacingClub } from '../racing-club/racing-club.entity';
 
 @Entity()
 export class TeamScoreYear {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
-  @ManyToOne(() => RacingClub, (club) => club.yearScores)
+  @ManyToOne(() => RacingClub, (club) => club.teamScoreYears)
   club: RacingClub;
 
   @Column()

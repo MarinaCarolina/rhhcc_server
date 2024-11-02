@@ -13,7 +13,7 @@ export class CarController {
 
   @Get(':id')
   findOne(@Param('id') id: string): Promise<Car> {
-    return this.carService.findOne(Number(id));
+    return this.carService.findOne(id);
   }
 
   @Post()
@@ -23,6 +23,6 @@ export class CarController {
 
   @Delete(':id')
   remove(@Param('id') id: string): Promise<void> {
-    return this.carService.remove(Number(id));
+    return this.carService.remove(id);
   }
 }

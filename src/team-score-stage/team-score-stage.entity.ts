@@ -4,8 +4,8 @@ import { Stage } from '../stage/stage.entity';
 
 @Entity()
 export class TeamScoreStage {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @ManyToOne(() => RacingClub, (club) => club.teamScores)
   club: RacingClub;

@@ -14,7 +14,7 @@ export class StageService {
     return this.stageRepository.find({ relations: ['track'] });
   }
 
-  findOne(id: number): Promise<Stage> {
+  findOne(id: string): Promise<Stage> {
     return this.stageRepository.findOne({
       where: { id },
       relations: ['track'],
@@ -25,7 +25,7 @@ export class StageService {
     return this.stageRepository.save(stage);
   }
 
-  async remove(id: number): Promise<void> {
+  async remove(id: string): Promise<void> {
     await this.stageRepository.delete(id);
   }
 }

@@ -4,13 +4,13 @@ import { RaceClass } from '../race-class/race-class.entity';
 
 @Entity()
 export class PersonalScore {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
-  @ManyToOne(() => Pilot, (pilot) => pilot.scores)
+  @ManyToOne(() => Pilot, (pilot) => pilot.personalScores)
   pilot: Pilot;
 
-  @ManyToOne(() => RaceClass, (raceClass) => raceClass.scores)
+  @ManyToOne(() => RaceClass, (raceClass) => raceClass.personalScores)
   raceClass: RaceClass;
 
   @Column()

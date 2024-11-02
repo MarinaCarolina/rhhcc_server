@@ -14,7 +14,7 @@ export class CarService {
     return this.carRepository.find();
   }
 
-  findOne(id: number): Promise<Car> {
+  findOne(id: string): Promise<Car> {
     return this.carRepository.findOneBy({ id });
   }
 
@@ -22,7 +22,7 @@ export class CarService {
     return this.carRepository.save(Car);
   }
 
-  async remove(id: number): Promise<void> {
+  async remove(id: string): Promise<void> {
     await this.carRepository.delete(id);
   }
 }

@@ -13,7 +13,7 @@ export class StageController {
 
   @Get(':id')
   findOne(@Param('id') id: string): Promise<Stage> {
-    return this.stageService.findOne(Number(id));
+    return this.stageService.findOne(id);
   }
 
   @Post()
@@ -23,6 +23,6 @@ export class StageController {
 
   @Delete(':id')
   remove(@Param('id') id: string): Promise<void> {
-    return this.stageService.remove(Number(id));
+    return this.stageService.remove(id);
   }
 }

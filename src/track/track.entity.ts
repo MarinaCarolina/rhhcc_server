@@ -4,7 +4,7 @@ import { Stage } from '../stage/stage.entity';
 @Entity()
 export class Track {
   @PrimaryGeneratedColumn('uuid')
-  id: number;
+  id: string;
 
   @Column()
   name: string;
@@ -15,7 +15,7 @@ export class Track {
   @Column('float')
   lap_length: number;
 
-  @Column({ nullable: true })
+  @Column('int', { nullable: true })
   best_result: number; // Вычисляемое поле
 
   @OneToMany(() => Stage, (stage) => stage.track)
