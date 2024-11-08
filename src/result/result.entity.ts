@@ -1,4 +1,12 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  CreateDateColumn,
+  UpdateDateColumn,
+  JoinColumn,
+} from 'typeorm';
 import { Pilot } from '../pilot/pilot.entity';
 import { Stage } from '../stage/stage.entity';
 import { RacingClub } from '../racing-club/racing-club.entity';
@@ -16,12 +24,15 @@ export class Result {
   time: string;
 
   @ManyToOne(() => Stage, (stage) => stage.results)
+  @JoinColumn()
   stage: Stage;
 
   @ManyToOne(() => RacingClub, (club) => club.results)
+  @JoinColumn()
   club: RacingClub;
 
   @ManyToOne(() => RaceClass, (raceClass) => raceClass.results)
+  @JoinColumn()
   raceClass: RaceClass;
 
   @Column()
@@ -35,4 +46,10 @@ export class Result {
 
   @Column()
   team_points: number;
+
+  @CreateDateColumn({ type: 'timestamp' })
+  created_at: Date;
+
+  @UpdateDateColumn({ type: 'timestamp' })
+  updated_at: Date;
 }

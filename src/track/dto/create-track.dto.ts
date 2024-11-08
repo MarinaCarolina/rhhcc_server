@@ -12,5 +12,5 @@ export class CreateTrackDto {
 
   @IsOptional()
   @IsNumber()
-  best_result?: number;
+  best_time?: number;
 }

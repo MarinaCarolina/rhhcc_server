@@ -1,4 +1,12 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToMany,
+  CreateDateColumn,
+  UpdateDateColumn,
+  JoinColumn,
+} from 'typeorm';
 import { Result } from '../result/result.entity';
 import { Pilot } from '../pilot/pilot.entity';
 import { PersonalScore } from '../personal-score/personal-score.entity';
@@ -12,11 +20,20 @@ export class RaceClass {
   name: string;
 
   @OneToMany(() => Result, (result) => result.raceClass)
+  @JoinColumn()
   results: Result[];
 
   @OneToMany(() => Pilot, (pilot) => pilot.raceClass)
+  @JoinColumn()
   pilots: Pilot[];
 
   @OneToMany(() => PersonalScore, (personalScore) => personalScore.pilot)
+  @JoinColumn()
   personalScores: PersonalScore[];
+
+  @CreateDateColumn({ type: 'timestamp' })
+  created_at: Date;
+
+  @UpdateDateColumn({ type: 'timestamp' })
+  updated_at: Date;
 }
