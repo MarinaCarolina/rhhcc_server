@@ -1,14 +1,17 @@
 import { IsNumber, IsString } from 'class-validator';
 
-export class CreateTyreDto {
+export class CreateTireDto {
   @IsString()
-  name: string;
+  tire_brand: string;
 
   @IsString()
   tire_model: string;
 
   @IsNumber()
   tire_width: number;
+
+  @IsNumber()
+  tire_ratio: number;
 
   @IsNumber()
   tire_diameter: number;

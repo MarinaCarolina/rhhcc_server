@@ -9,7 +9,7 @@ import {
 
 @Entity()
 @Check(`"tire_width" > 0 AND "tire_ratio" > 0 AND "tire_diameter" > 0`)
-export class Tyre {
+export class Tire {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 

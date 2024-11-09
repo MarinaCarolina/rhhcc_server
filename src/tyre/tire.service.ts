@@ -1,76 +1,76 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Tyre } from './tyre.entity';
+import { Tire } from './tire.entity';
 import {
   AnalyticsService,
   IAnalytics,
 } from '../utils/analytics/analytics.service';
-import { CreateTyreDto } from './dto/create-tyre.dto';
-import { UpdateTyreDto } from './dto/update-tyre.dto';
+import { CreateTireDto } from './dto/create-tire.dto';
+import { UpdateTireDto } from './dto/update-tire.dto';
 
 @Injectable()
-export class TyreService {
+export class TireService {
   constructor(
-    @InjectRepository(Tyre)
-    private readonly tyreRepository: Repository<Tyre>,
+    @InjectRepository(Tire)
+    private readonly tireRepository: Repository<Tire>,
     private readonly analyticsService: AnalyticsService,
   ) {}
 
-  findAll(): Promise<IAnalytics<Tyre[]>> {
-    return this.analyticsService.provide<Tyre[]>(
+  findAll(): Promise<IAnalytics<Tire[]>> {
+    return this.analyticsService.provide<Tire[]>(
       {
         successMessage: 'Все шины успешно получены',
         failureMessage: 'Не удалось получить шины',
-        id: 'findAllTyres',
+        id: 'findAllTires',
       },
       async () => {
-        return this.tyreRepository.find();
+        return this.tireRepository.find();
       },
     );
   }
 
-  findOne(id: string): Promise<IAnalytics<Tyre>> {
+  findOne(id: string): Promise<IAnalytics<Tire>> {
     return this.analyticsService.provide(
       {
         successMessage: `Шина с ID ${id} успешно получена`,
         failureMessage: `Шина с ID ${id} не найдена`,
-        id: 'findTyreById',
+        id: 'findTireById',
       },
       async () => {
-        const tyre = await this.tyreRepository.findOneBy({ id });
-        if (!tyre) throw new Error(`Шина с ID ${id} не найдена`);
-        return tyre;
+        const tire = await this.tireRepository.findOneBy({ id });
+        if (!tire) throw new Error(`Шина с ID ${id} не найдена`);
+        return tire;
       },
     );
   }
 
-  create(createTyreDto: CreateTyreDto): Promise<IAnalytics<Tyre>> {
+  create(createTireDto: CreateTireDto): Promise<IAnalytics<Tire>> {
     return this.analyticsService.provide(
       {
         successMessage: 'Шина успешно создана',
         failureMessage: 'Не удалось создать шину',
-        id: 'createTyre',
+        id: 'createTire',
       },
       async () => {
-        const tyre = this.tyreRepository.create(createTyreDto);
-        return this.tyreRepository.save(tyre);
+        const tire = this.tireRepository.create(createTireDto);
+        return this.tireRepository.save(tire);
       },
     );
   }
 
-  update(id: string, updateTyreDto: UpdateTyreDto): Promise<IAnalytics<Tyre>> {
+  update(id: string, updateTireDto: UpdateTireDto): Promise<IAnalytics<Tire>> {
     return this.analyticsService.provide(
       {
         successMessage: `Шина с ID ${id} успешно обновлена`,
         failureMessage: `Не удалось обновить шину с ID ${id}`,
-        id: 'updateTyre',
+        id: 'updateTire',
       },
       async () => {
-        const result = await this.tyreRepository.update(id, updateTyreDto);
+        const result = await this.tireRepository.update(id, updateTireDto);
         if (result.affected === 0)
           throw new Error(`Шина с ID ${id} не найдена`);
-        return this.tyreRepository.findOneBy({ id });
+        return this.tireRepository.findOneBy({ id });
       },
     );
   }
@@ -80,10 +80,10 @@ export class TyreService {
       {
         successMessage: `Шина с ID ${id} успешно удалена`,
         failureMessage: `Не удалось удалить шину с ID ${id}`,
-        id: 'deleteTyre',
+        id: 'deleteTire',
       },
       async () => {
-        const result = await this.tyreRepository.delete(id);
+        const result = await this.tireRepository.delete(id);
         if (result.affected === 0)
           throw new Error(`Шина с ID ${id} не найдена`);
       },
