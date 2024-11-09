@@ -4,20 +4,28 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  Check,
 } from 'typeorm';
 
 @Entity()
+@Check(`"tire_width" > 0 AND "tire_ratio" > 0 AND "tire_diameter" > 0`)
 export class Tyre {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
+  tire_brand: string;
+
+  @Column()
   tire_model: string;
 
-  @Column('float')
+  @Column('int')
   tire_width: number;
 
-  @Column('float')
+  @Column('int')
+  tire_ratio: number;
+
+  @Column('int')
   tire_diameter: number;
 
   @CreateDateColumn({ type: 'timestamp' })
