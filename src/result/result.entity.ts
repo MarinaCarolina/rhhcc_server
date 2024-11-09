@@ -38,6 +38,9 @@ export class Result {
   @Column()
   weather_conditions: string;
 
+  @Column('float')
+  weight: number;
+
   @Column()
   place: number;
 

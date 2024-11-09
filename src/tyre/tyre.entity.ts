@@ -1,18 +1,15 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity()
-export class Car {
+export class Tyre {
   @PrimaryGeneratedColumn('uuid')
   id: string;
-
-  @Column()
-  brand: string;
-
-  @Column()
-  model: string;
-
-  @Column()
-  modification: string;
 
   @Column()
   tire_model: string;
